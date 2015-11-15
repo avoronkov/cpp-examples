@@ -1,6 +1,6 @@
 .PHOMY: all clean
 
-EXAMPLES=01-basic 02-shapes 03-slicing 04-collections
+EXAMPLES=01-basic 02-shapes 03-slicing 04-collections 05-dependencies
 
 all: ${EXAMPLES}
 
