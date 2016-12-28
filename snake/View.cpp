@@ -19,17 +19,14 @@ View::~View() {
 	endwin();
 }
 
-void View::update() {
+void View::refreshScreen() {
 	if (_game->state() == State::Over) {
 		std::string mesg{"Game over."};
-		// std::cerr << "game over: " << _sheight/2 << ", " << (_swidth-mesg.size())/2 << std::endl;
 		mvprintw(_sheight/2, (_swidth-mesg.size())/2, "%s", mesg.c_str());
 		refresh();
 		return;
 	}
 	
-	processControls();
-
 	clear();
 	const auto & snake = _game->snake();
 	for (const auto & p : snake) {
@@ -42,6 +39,10 @@ void View::update() {
 }
 
 void View::processControls() {
+	if (_game->state() == State::Over) {
+		return;
+	}
+
 	int c = getch();
 	switch (c) {
 		case KEY_UP:    _game->move(Dir::Down); break;

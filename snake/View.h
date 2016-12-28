@@ -17,8 +17,7 @@ public:
 		_game = g;
 	}
 
-	void update();
-private:
+	void refreshScreen();
 	void processControls();
 };
 
